@@ -1,0 +1,69 @@
+telemetry_analysis_task:
+  description: >
+    Analise os dados brutos de telemetria e visão computacional do setor {sector}.
+
+    Dados de sensores ESP32:
+    {telemetry_data}
+
+    Alertas de visão computacional:
+    {vision_data}
+
+    Contexto da colônia:
+    {colony_context}
+
+    Identifique anomalias, falhas de irrigação, crises de saúde vegetal e correlacione
+    declínios de umidade com alertas visuais de estresse foliar. Priorize os achados
+    por gravidade e setor afetado.
+  expected_output: >
+    Relatório de telemetria em markdown com: (1) resumo executivo dos alertas,
+    (2) anomalias detectadas com evidências dos sensores e da visão computacional,
+    (3) setores afetados e nível de gravidade (crítico/alto/médio/baixo),
+    (4) hipóteses de causa raiz para cada anomalia.
+  agent: telemetry_analyst
+
+botanical_solution_task:
+  description: >
+    Com base no relatório de telemetria fornecido no contexto anterior, determine as
+    soluções científicas e tratamentos agrícolas avançados para cada crise identificada.
+
+    Simule a pesquisa em manuais de hidroponia, guias da FAO e conhecimento de biomas
+    extremos para propor tratamentos precisos. Para cada anomalia do relatório anterior,
+    indique: diagnóstico botânico confirmado, tratamento recomendado, dosagem ou parâmetros
+    de ambiente (pH, EC, umidade alvo, fotoperíodo) e tempo estimado de recuperação.
+  expected_output: >
+    Plano de tratamento botânico em markdown com seções por anomalia: diagnóstico,
+    tratamento proposto, parâmetros operacionais ajustados, contraindicações e
+    indicadores de sucesso do tratamento.
+  agent: aerospace_botanist
+
+resource_impact_task:
+  description: >
+    Avalie o impacto ecológico e logístico das soluções botânicas propostas no contexto
+    anterior sobre o ecossistema global da colônia.
+
+    Calcule consumo hídrico adicional, demanda energética, autonomia dos reservatórios
+    após implementação e riscos de cascata na infraestrutura. Se alguma solução comprometer
+    a sobrevivência da colônia, proponha plano de contingência ou alternativa de menor impacto.
+  expected_output: >
+    Relatório de impacto de recursos em markdown com: consumo hídrico e energético
+    estimado por tratamento, autonomia de reservatórios (em dias), riscos logísticos,
+    recomendações de contingência e parecer de viabilidade (aprovado/condicional/rejeitado)
+    para cada solução proposta.
+  agent: resource_engineer
+
+command_order_task:
+  description: >
+    Consolide o relatório de telemetria, o plano de tratamento botânico e o parecer de
+    impacto de recursos (disponíveis no contexto anterior) em uma ordem de comando
+    operacional final.
+
+    Estruture instruções acionáveis para: (1) atualização do dashboard da colônia,
+    (2) comandos de automação a enviar ao ESP32 (irrigação, iluminação, ventilação,
+    nutrientes), (3) prioridade e sequência de execução, (4) critérios de verificação
+    pós-execução e (5) alertas de rollback se métricas não melhorarem.
+  expected_output: >
+    Ordem de comando final em markdown estruturada com: decisão consolidada, lista de
+    ações priorizadas para o dashboard, payload de comandos ESP32 (formato JSON dentro
+    do markdown), cronograma de execução e checklist de verificação pós-implementação.
+    Formatted as markdown without '```'
+  agent: commander
