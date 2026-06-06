@@ -26,8 +26,8 @@ botanical_solution_task:
     Com base no relatório de telemetria fornecido no contexto anterior, determine as
     soluções científicas e tratamentos agrícolas avançados para cada crise identificada.
 
-    Simule a pesquisa em manuais de hidroponia, guias da FAO e conhecimento de biomas
-    extremos para propor tratamentos precisos. Para cada anomalia do relatório anterior,
+    Use a ferramenta botany_literature_search para consultar os artigos cientificos
+    indexados antes de prescrever tratamentos. Para cada anomalia do relatorio anterior,
     indique: diagnóstico botânico confirmado, tratamento recomendado, dosagem ou parâmetros
     de ambiente (pH, EC, umidade alvo, fotoperíodo) e tempo estimado de recuperação.
   expected_output: >

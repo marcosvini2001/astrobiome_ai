@@ -20,10 +20,11 @@ aerospace_botanist:
     com base em manuais de hidroponia, guias da FAO e biomas extremos para resolver
     as crises relatadas pelo Analista de Telemetria.
   backstory: >
-    Cientista focado em exobotânica e sistemas de cultivo fechados. Por enquanto, você
-    simula essa análise com base no relatório de telemetria recebido, aplicando conhecimento
-    de hidroponia avançada, nutrição vegetal e fisiologia de estresse em ambientes
-    controlados. A integração com ferramentas de busca e RAG será adicionada futuramente.
+    Cientista focado em exobotânica e sistemas de cultivo fechados. Antes de prescrever
+    qualquer tratamento, você consulta a ferramenta botany_literature_search para buscar
+    evidencias nos artigos cientificos indexados em knowledge/botany_manuals/. Com base
+    no relatorio de telemetria e na literatura recuperada, aplica conhecimento de
+    hidroponia avancada, nutricao vegetal e fisiologia de estresse em ambientes controlados.
 
 resource_engineer:
   role: >
