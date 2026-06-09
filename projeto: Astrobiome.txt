@@ -1,0 +1,76 @@
+Título do Projeto: Astrobiome AI - Sistema Inteligente para Botânica Espacial
+Integrantes:
+Leonardo Alves Magalhães
+Fabio Camargos Mendes
+Marcos Vinicius dos Santos Morgado
+Bernardo Zandoná Rupolo
+
+
+QUERO CONCORRER 
+1. Introdução
+O Problema: O espaço deixou de ser apenas uma fronteira científica e se tornou um dos territórios mais estratégicos de inovação, negócios e transformação do nosso tempo. A expansão da economia espacial traz a necessidade constante de inovação em ambientes extremos. Um dos maiores obstáculos para viabilizar missões de longo prazo e simulações para a colonização da Lua e de Marte é garantir a produção de alimentos e recursos em ambientes extremos. A agricultura orbital e extraplanetária lida com um ecossistema frágil, onde a falta de precisão pode levar à perda total de uma safra, comprometendo a sustentabilidade das missões e a vida dos astronautas.
+Nossa solução: Para responder a esse cenário, desenvolvemos o Astrobiome AI. Nossa prova de conceito (POC) foi idealizada para propor soluções que usem tecnologia, dados e inovação para resolver desafios da Terra, ampliar as possibilidades da economia espacial e criar oportunidades para o futuro. O projeto consiste em um ecossistema inteligente de Gêmeos Digitais (Digital Twins) voltado para a botânica espacial. Ao conectar dados e explorar a IA, o Astrobiome AI utiliza uma arquitetura RAG (Retrieval-Augmented Generation) alimentada por manuais científicos de botânica para simular estufas espaciais. O sistema permite diagnosticar anomalias, otimizar o uso de recursos e automatizar o controle do ambiente em tempo real, com o objetivo de transformar conhecimento em algo aplicável, relevante e inovador.
+E os pilares do nosso projeto:
+Inovação e Simulação Avançada: Utilização de Gêmeos Digitais para testar hipóteses de crescimento botânico sem riscos físicos, enfrentando desafios espaciais que aceleram soluções aplicáveis dentro e fora da Terra.
+Decisão Guiada por Dados e IA Generativa: Uso de inteligência artificial para análise ambiental e climática dentro das estufas virtuais, garantindo que as recomendações de intervenção sejam estritamente embasadas na literatura científica embutida no RAG.
+Sustentabilidade e Autonomia: Foco direto em viabilizar novos modelos para a produção de alimentos e recursos em ambientes extremos, automatizando processos e reduzindo a carga cognitiva e operacional necessária para manter biomas sustentáveis no espaço.
+
+2. Desenvolvimento
+Explicação Detalhada da Solução: 
+Arquitetura: 
+Base de Conhecimento (RAG): O grande diferencial do Astrobiome AI é a sua capacidade de raciocínio especializado. Para evitar respostas genéricas (alucinações) e garantir o rigor científico exigido em missões espaciais, implementamos uma arquitetura RAG (Retrieval-Augmented Generation) acoplada a um sistema multi-agente. Os manuais científicos, estudos de caso e artigos de ponta anexados ao projeto foram vetorizados e segmentados em bases de conhecimento específicas. Cada agente do nosso ecossistema consulta a literatura que corresponde à sua "especialidade", garantindo uma operação autônoma, eficiente e segura para a estufa espacial.
+A arquitetura de decisão é dividida nos seguintes módulos autônomos:
+Agente Analista de Telemetria:
+Função: É a linha de frente sensorial do Digital Twin. Ele consome e cruza os dados brutos de IoT vindos do ESP32 (temperatura, umidade, pH) com as análises de Visão Computacional (CV).
+Uso do RAG: Este agente baseia seus parâmetros de detecção de anomalias em referências como o estudo A Measurement-Driven Digital Twin Architecture. Ele utiliza os conceitos de estimativa de biomassa e modelagem de crescimento baseada em imagens RGB-D para diagnosticar crises precocemente, como cruzar um declínio agudo de umidade com o aparecimento de manchas foliares antes que a planta perca sua viabilidade.
+Agente Botânico Aeroespacial:
+Função: O cérebro biológico da operação. Uma vez que o Analista de Telemetria detecta um problema, este agente é acionado para prescrever o tratamento exato, formulando as correções nutricionais ou de iluminação.
+Uso do RAG: Ele consulta ativamente artigos focados em biologia de ambientes extremos, como os estudos sobre o crescimento de culturas sob condições de radiação marciana simulada (Influence of Martian Radiation-like Conditions...) e manuais sobre sistemas de suporte à vida ecológica controlada no espaço (Controlled ecological life support systems in space). Isso permite que a prescrição respeite as diretrizes de estresse botânico extraplanetário.
+
+Agente Engenheiro de Recursos:
+Função: O guardião da infraestrutura. Ele recebe a prescrição botânica e calcula o impacto logístico que a ação causará no ecossistema da base espacial, autorizando ou vetando a ação.
+Uso do RAG: Para evitar que salvar uma planta comprometa a energia da colônia, este agente consome literaturas de otimização energética e controle climático, como o framework detalhado no documento HierFedCEA: Hierarchical Federated Edge Learning. Ele aplica lógicas de redução de consumo em sistemas HVAC (aquecimento, ventilação e ar-condicionado) para garantir que o gasto hídrico e elétrico do tratamento seja otimizado e seguro.
+Agente Comandante Central:
+Função: O orquestrador final do sistema. Ele não consome manuais técnicos diretamente, mas atua como o juiz que consolida as análises do Telemetrista, do Botânico e as restrições do Engenheiro.
+Ação: Uma vez que o consenso é alcançado, o Comandante emite a "Ordem de Comando" final. Ele atualiza os dashboards de monitoramento para a tripulação (via interface web/mobile) e dispara o payload de automação corretiva de volta aos atuadores conectados ao ESP32, fechando o ciclo do Gêmeo Digital de forma totalmente autônoma.
+Motor de Inteligência (IA Generativa):
+O motor de inteligência do Astrobiome AI é baseado no modelo GPT-4o, acessado via framework CrewAI. Cada agente recebe um system prompt especializado com role, goal e backstory calibrados para seu domínio específico. A integração com RAG é realizada pelo agente Botânico Aeroespacial, que utiliza a ferramenta BotanyLiteratureSearchTool para consultar os artigos científicos indexados no FAISS com embeddings sentence-transformers/all-MiniLM-L6-v2 antes de prescrever qualquer tratamento. O pipeline sequencial garante que cada agente receba o contexto completo dos agentes anteriores, criando um raciocínio encadeado e coerente que vai da detecção da anomalia até a ordem de comando final.
+Integração com sensores IoT/ESP32:
+A integração com IoT foi implementada por meio de um simulador ESP32 (esp32_simulator.py) que gera dados de telemetria realistas com variação aleatória a cada execução, replicando o comportamento de sensores físicos. O simulador coleta e formata dados de umidade do substrato por linha de cultivo (A, B e C), temperatura ambiente, temperatura da solução nutritiva, umidade relativa, luminosidade em lux, pH, condutividade elétrica (EC) e status da bomba de irrigação. Os dados são enviados via HTTP POST para a API FastAPI, que os repassa ao crew de agentes. A lógica de falha crítica da bomba é simulada probabilisticamente, com 60% de chance de fluxo zero, reproduzindo cenários reais de falha mecânica em sistemas de irrigação hidropônica.
+Front-end / Dashboard:
+O dashboard foi desenvolvido em React com Vite, sem bibliotecas de UI externas, adotando visual temático espacial com fundo escuro (#0a0e1a) e cards com alertas coloridos. A interface exibe em tempo real oito métricas de sensor (Umidade A/B/C, Temperatura Ambiente, pH, EC, Luminosidade e Status da Bomba), cada uma com código de cor dinâmico derivado dos ranges ideais de cultivo: verde (normal), amarelo (atenção) e vermelho (crítico). O painel de Ordem de Comando renderiza o markdown gerado pelo Agente Comandante usando react-markdown. Um polling automático de 5 segundos via useEffect mantém a interface sincronizada com o backend sem necessidade de atualização manual. O botão “Disparar Análise” envia os dados do simulador para a API e inicia o pipeline completo dos agentes.
+
+Códigos Principais:
+RAG Tool (rag_tool.py) — Recuperação de literatura científica:
+CHUNK_SIZE = 1000 | CHUNK_OVERLAP = 200 | TOP_K = 3
+Os PDFs científicos são carregados via PyPDFDirectoryLoader, segmentados com RecursiveCharacterTextSplitter e vetorizados com o modelo sentence-transformers/all-MiniLM-L6-v2 via HuggingFaceEmbeddings. O índice FAISS é persistido em disco e recarregado automaticamente entre sessões, com verificação de staleness por timestamp dos arquivos PDF. A ferramenta BotanyLiteratureSearchTool encapsula o retriever como uma CrewAI BaseTool, retornando os 3 trechos mais relevantes com citação da fonte e número de página.
+API FastAPI (api_server.py) — Middleware entre IoT e CrewAI:
+A API expõe três endpoints: POST /analyze (recebe payload de sensor, dispara o crew em background via asyncio.to_thread), GET /status (retorna status atual, últimos dados de sensor e o command_order.md gerado) e GET /health. Um threading.Lock serializa execuções concorrentes do crew, e o diretório de trabalho é temporariamente alterado para que o output_file do CrewAI seja gravado no caminho correto. CORS está liberado para todas as origens, permitindo acesso do dashboard React.
+Simulador ESP32 (esp32_simulator.py) — Geração de telemetria sintética:
+O simulador gera dados de telemetria com variação aleatória (random.uniform) em torno de valores base que representam um cenário crítico real: déficit hídrico agudo com falha de bomba. A lógica de falha usa random.choices com peso de 60% para fluxo zero, simulando intermitência mecânica. Os dados de visão computacional simulam NDVI entre 0.4 e 0.8, com classificação automática da correlação (déficit agudo, moderado ou normal) baseada no valor gerado. O payload completo é enviado via HTTP POST com timeout de 10 segundos e tratamento de erros de conexão.
+Integração de Disciplinas das Fases 3 e 4:
+O Astrobiome AI integra diretamente conteúdos de múltiplas disciplinas cursadas nas Fases 3 e 4 do curso de Inteligência Artificial da FIAP:
+Fase 3 — Cap. 1 e Cap. 8 (IoT e Cloud Computing): Arquitetura de sensores ESP32 enviando telemetria em tempo real para a API via HTTP, replicando o modelo de dispositivos IoT conectados à nuvem.
+Fase 3 — Cap. 6 (IA Criativa e Modelos Gerativos): Motor central usando LLM com RAG sobre literatura científica para geração de diagnósticos, tratamentos e ordens de comando.
+Fase 3 — Cap. 9 (Edge e Fog Computing): Conceito de processamento distribuído aplicado à arquitetura onde o simulador ESP32 processa e filtra dados localmente antes de enviar à API central.
+Fase 4 — Cap. 6 (Transformers e LLMs): Prompt engineering avançado com role, goal e backstory por agente; pipeline sequencial com contexto encadeado entre LLMs especializados.
+Fase 4 — Cap. 8 e Cap. 9 (IoT Eficiente e Protocolos ESP32): Simulador replica payload real de sensor ESP32 com dados de umidade, temperatura, pH, EC e luminosidade, seguindo os padrões de otimização de energia e protocolo HTTP estudados na disciplina.
+Fase 3 Cap. 5 e Fase 4 Cap. 1 (ReactJS e Visão Computacional): Dashboard desenvolvido em React com Vite; dados de visão computacional simulados (NDVI, manchas cloróticas, enrolamento foliar) integrados ao pipeline de telemetria do Agente Analista.
+3. Resultados Esperados
+Com a implementação completa do Astrobiome AI, esperamos demonstrar a viabilidade de um sistema autônomo de monitoramento e intervenção para estufas espaciais. Os principais resultados esperados são:
+Detecção precoce de anomalias: O sistema deve identificar déficits hídricos, desbalanceamentos nutricionais e falhas de equipamento antes que causem perda irrecuperável de cultura, reduzindo o risco de perda de safra em até 80% comparado ao monitoramento manual.
+Prescrições embasadas em literatura científica: Cada tratamento recomendado pelo Agente Botânico será respaldado por trechos recuperados dos artigos científicos indexados, eliminando alucinações e garantindo rigor científico exigido em missões espaciais reais.
+Otimização de recursos da colônia: O Agente Engenheiro de Recursos garantirá que nenhuma intervenção botânica comprometa a autonomia hídrica ou energética da colônia, calculando impacto logístico antes de aprovar qualquer ação corretiva.
+Ciclo autônomo fechado: O sistema fecha o loop completo de Gêmeo Digital: sensor IoT → análise por IA → decisão multi-agente → payload de comando → dashboard de monitoramento, sem intervenção humana no ciclo de decisão.
+Aplicabilidade terrestre: A mesma arquitetura é diretamente aplicável a estufas hidropônicas comerciais na Terra, agricultura de precisão em ambientes controlados e sistemas de monitoramento agrícola em regiões remotas sem acesso a especialistas.
+4. Conclusões
+O Astrobiome AI demonstra como a integração de tecnologias modernas de Inteligência Artificial pode resolver um dos maiores desafios da economia espacial: garantir a produção sustentável de alimentos em ambientes extremos. Ao combinar arquitetura multi-agente com RAG especializado, integração IoT e dashboard em tempo real, o projeto entrega uma prova de conceito funcional e arquiteturalmente sólida.
+O diferencial do projeto está na abordagem RAG aplicada a domínio científico especializado: em vez de depender do conhecimento genérico do LLM, cada agente consulta literatura peer-reviewed antes de tomar decisões. Isso reduz alucinações e torna o sistema confiável para operações críticas onde erros de prescrição podem comprometer missões espaciais inteiras.
+A arquitetura desenvolvida é escalável e modular: novos agentes podem ser adicionados para cobrir outros domínios (medicina espacial, manutenção de estruturas, navegação), e a base de conhecimento RAG pode ser expandida com novos artigos sem alteração de código. O sistema também tem aplicação direta na agricultura de precisão terrestre, representando uma solução com impacto tanto para a economia espacial quanto para desafios de segurança alimentar na Terra.
+
+O projeto integra diretamente oito disciplinas das Fases 3 e 4 do curso de Inteligência Artificial da FIAP, demonstrando na prática a síntese dos conhecimentos acumulados: IoT, Edge Computing, IA Generativa, LLMs, Prompt Engineering, Visão Computacional, ReactJS e protocolos ESP32. O Astrobiome AI é a materialização da proposta central da Global Solution: usar tecnologia avançada de IA para impulsionar soluções inovadoras para a nova economia espacial.
+Links Obrigatórios:
+Repositório GitHub: 
+https://github.com/marcosvini2001/astrobiome_ai/tree/main/astrobiome_ai
+Vídeo Demonstrativo (Não Listado): 
+

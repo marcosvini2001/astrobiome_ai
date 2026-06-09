@@ -1,63 +1,55 @@
-# Ordem de Comando Final
+# Ordem de Comando Final para Setor Alpha-3
 
 ## Decisão Consolidada
+Este plano de ação visa resolver as anomalias críticas no Setor Alpha-3, abordando falhas de irrigação, problemas climáticos e nutricionais. As ações são ordenadas por prioridade para assegurar a restauração eficiente das condições ideais de cultivo para a alface hidropônica.
 
-Dadas as áreas críticas identificadas no Relatório de Telemetria, o Plano de Tratamento Botânico e o Relatório de Impacto de Recursos, as ações devem centralizar-se na restauração imediata do sistema de irrigação, ajustes de parâmetros climáticos e correção do desequilíbrio na solução nutritiva para mitigar os efeitos do estresse hídrico e garantir a produtividade esperada.
+## Lista de Ações Priorizadas para o Dashboard
+1. **Irrigação**: Restabelecer o fluxo da bomba de irrigação.
+2. **Clima**: Ajustar os níveis térmicos e de umidade.
+3. **Nutrientes**: Corregir os níveis de pH e EC da solução nutritiva.
+4. **Monitoramento Contínuo**: Acompanhar as métricas de retorno à normalidade.
 
-## Ações Prioritárias para Atualização do Dashboard
-
-1. Atualizar status da operação da bomba de irrigação e seus fluxos, garantindo visibilidade em tempo real.
-2. Atualizar parâmetros climáticos padronizados para temperaturas e umidades relativas recomendadas.
-3. Atualizar níveis de pH e EC da solução nutritiva para refletir os novos padrões estabelecidos.
-
-## Payload de Comandos ESP32
-
-```json
+## Payload de Comandos ESP32 (Formato JSON):
+```
 {
-  "Irrigacao": {
-    "Acao": "Reparo",
-    "Fluxo": "1.5-2 L/min",
-    "BombaBackup": "Ativar"
+  "irrigation": {
+    "action": "restore",
+    "frequency": "4-6 hours",
+    "target_moisture": "60-70%"
   },
-  "Clima": {
-    "Temperatura": "Configurar entre 22-24C",
-    "UmidadeRelativa": "Incrementar para 55-65%",
-    "Nebulizacao": "300-500 L/dia"
+  "climate_control": {
+    "temperature_target": "22-24°C",
+    "humidity_target": "55-65%"
   },
-  "Nutrientes": {
-    "pH": "Ajustar para 5.8-6.2",
-    "EC": "Ajustar para 1.2-1.6 mS/cm"
+  "nutrient_control": {
+    "adjust_ph": "5.8-6.2",
+    "adjust_ec": "1.4 mS/cm"
   }
 }
 ```
 
 ## Cronograma de Execução
-
-1. **Imediato (0-2 horas):**
-   - Reparo ou substituição da bomba de irrigação.
-   - Configuração inicial dos sistemas de ventilação e nebulização.
-   
-2. **Médio Prazo (2-6 horas):**
-   - Monitoramento e ajuste fino das condições climáticas.
-   - Ajustes iniciais na solução nutritiva conforme necessário.
-
-3. **Curto Prazo (6-12 horas):**
-   - Implementação de procedimentos de backup e contingência.
-   - Inspeção e verificação dos ajustes realizados.
+- **Primeira Hora**: Restabelecimento da irrigação e monitoramento da bomba.
+- **Próximas 12 Horas**: Ajustes de temperatura e umidade.
+- **Próximas 24 Horas**: Ajuste dos níveis de pH e EC e verificação de melhorias visuais.
+- **Verificação de 48 Horas**: Indicadores de restauração completados com sucesso.
 
 ## Checklist de Verificação Pós-Implementação
+1. **Irrigação**:
+   - Ligar e monitorar fluxo da bomba.
+   - Confirmar umidade entre 60-70% nas Linhas A e B.
+2. **Clima**:
+   - Verificar temperatura entre 22-24°C.
+   - Confirmar umidade relativa entre 55-65%.
+3. **Nutrientes**:
+   - Estabiliizar pH em 5.8-6.2.
+   - Confirmar EC em 1.4 mS/cm.
+4. **Saúde Vegetal**:
+   - Monitorar sinais de redução de estresse hídrico.
+   - NDVI aumento relevante em 72 horas.
 
-- [ ] Verificar reinício e fluxo estável do sistema de irrigação.
-- [ ] Certificar que as temperaturas ambiente e da solução nutritiva estejam nos parâmetros ajustes.
-- [ ] Verificar precisão nos ajustes do pH e EC do reservatório de solução.
-- [ ] Avaliar recuperação do índice de vigor vegetativo (NDVI) como esperado.
-- [ ] Monitorar e anotar qualquer incidência de estresse hídrico visual após aplicação dos tratamentos.
-
-## Alertas de Rollback
-
-Se qualquer uma das métricas abaixo não mostrar tendência de melhoria dentro de 12 horas, desencadear rolbaks e ajustes adicionais:
-
-- Umidade do substrato permanecer <35%.
-- NDVI não melhorar continuamente em direção ao baseline de 0.78.
-- Sinais de estresse hídrico não diminuírem significativamente.
-- Flutuações de temperatura e umidade relativa continuarem fora dos valores aceitáveis.
+## Alertas de Rollback e Contingência
+- **Se o fluxo de irrigação não estabilizar em 1 hora**: Ativar bomba de reserva e aumentar verificação manual.
+- **Se temperatura ou umidade não se ajustarem em 12 horas**: Reavaliar sensores climáticos e ativar suporte técnico.
+- **Se pH ou EC não estabilizarem em 48 horas**: Diluir solução nutritiva adicionalmente e preparar ajustes químicos detalhados.
+- **Monitoramento Contínuo de Saúde Vegetal**: Se NDVI não melhorar em 72 horas, considerar consulta de especialista em saúde vegetal.
