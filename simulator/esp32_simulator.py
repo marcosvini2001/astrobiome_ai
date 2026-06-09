@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 """
-Simula um sensor ESP32 enviando dados de telemetria e visão para a API Astrobiome AI.
+Simula um sensor ESP32 enviando através da imagem de referência plant_sample.jpg (imagem ilustratório que foi pega da internet)
 """
-
+from cv_analyzer import analyze_plant_image
+import os
 import random
 from datetime import datetime, timezone
-
 import requests
+
+IMAGE_PATH = os.path.join(os.path.dirname(__file__), "plant_sample.jpg")
 
 API_URL = "http://localhost:8000/analyze"
 
@@ -81,11 +83,18 @@ Ultima irrigacao registrada: {timestamp}"""
 
 
 def generate_vision(timestamp: str) -> str:
-    manchas = _pct(14, 4)
+    try:
+        cv = analyze_plant_image(IMAGE_PATH)
+        manchas = round(cv["chlorotic_pct"], 1)
+        ndvi = cv["ndvi_proxy"]
+        stress = cv["stress_level"]
+    except Exception:
+        manchas = _pct(14, 4)
+        ndvi = round(random.uniform(0.4, 0.8), 2)
+        stress = "MODERADO"
+
     enrolamento = _pct(8, 3)
-    ndvi = round(random.uniform(0.4, 0.8), 2)
     confianca = _pct(91, 3)
-    pragas = False
 
     if ndvi < 0.55:
         correlacao = "padrao compativel com deficit hidrico agudo"
@@ -100,11 +109,11 @@ Deteccoes:
   - Manchas cloroticas (amareladas) em {manchas}% das copas - Linha A e B
   - Enrolamento foliar leve em {enrolamento}% das plantas - Linha A
   - Indice de vigor vegetativo (NDVI proxy): {ndvi} (baseline setor: 0.78)
-  - Presenca de pragas visiveis: {pragas}
+  - Nivel de estresse foliar detectado: {stress}
+  - Presenca de pragas visiveis: False
   - Confianca media das deteccoes: {confianca}%
 
 Correlacao sugerida pelo pipeline CV: {correlacao}"""
-
 
 def build_payload(timestamp: str) -> dict:
     return {

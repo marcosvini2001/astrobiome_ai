@@ -1,55 +1,58 @@
-# Ordem de Comando Final para Setor Alpha-3
+# Ordem de Comando Final
 
 ## Decisão Consolidada
-Este plano de ação visa resolver as anomalias críticas no Setor Alpha-3, abordando falhas de irrigação, problemas climáticos e nutricionais. As ações são ordenadas por prioridade para assegurar a restauração eficiente das condições ideais de cultivo para a alface hidropônica.
+Após análise detalhada do relatório de telemetria, plano de tratamento botânico e impacto de recursos, as seguintes ações serão executadas para corrigir os desvios críticos no setor Alpha-3 (Alface Hidropônica).
 
-## Lista de Ações Priorizadas para o Dashboard
-1. **Irrigação**: Restabelecer o fluxo da bomba de irrigação.
-2. **Clima**: Ajustar os níveis térmicos e de umidade.
-3. **Nutrientes**: Corregir os níveis de pH e EC da solução nutritiva.
-4. **Monitoramento Contínuo**: Acompanhar as métricas de retorno à normalidade.
+## 1. Atualização do Dashboard da Colônia
+Atualizar o dashboard para refletir o status em tempo real das anomalias corrigidas e métricas atuais de desempenho dos setores.
 
-## Payload de Comandos ESP32 (Formato JSON):
-```
+- Progresso de Correção de Umidade do Substrato: Status e relatórios de sensores.
+- Parâmetros de Controle Climático Atualizados: Temperatura e umidade relativa com dados em tempo real.
+- Ajustes de Luminosidade e Nível de pH: Monitoramento contínuo.
+- Status de Estresse Foliar: Relatório de sintomas visuais pós-correção.
+
+## 2. Comandos de Automação para o ESP32
+Formatar e enviar o seguinte payload JSON ao ESP32 para execução automatizada das correções:
+
+```json
 {
   "irrigation": {
-    "action": "restore",
-    "frequency": "4-6 hours",
-    "target_moisture": "60-70%"
+    "frequency": "increase",
+    "target_moisture": 40
   },
-  "climate_control": {
-    "temperature_target": "22-24°C",
-    "humidity_target": "55-65%"
+  "temperature": {
+    "target": 23
   },
-  "nutrient_control": {
-    "adjust_ph": "5.8-6.2",
-    "adjust_ec": "1.4 mS/cm"
+  "humidity": {
+    "target": 60
+  },
+  "lighting": {
+    "intensity": 1000
+  },
+  "nutrients": {
+    "ph_target": 6.0
   }
 }
 ```
 
-## Cronograma de Execução
-- **Primeira Hora**: Restabelecimento da irrigação e monitoramento da bomba.
-- **Próximas 12 Horas**: Ajustes de temperatura e umidade.
-- **Próximas 24 Horas**: Ajuste dos níveis de pH e EC e verificação de melhorias visuais.
-- **Verificação de 48 Horas**: Indicadores de restauração completados com sucesso.
+## 3. Prioridade e Sequência de Execução
+1. **Irrigação**: Prioridade máxima - aumentar a umidade do substrato nas linhas afetadas.
+2. **Clima interno**: Ajustar temperatura e umidade relativa.
+3. **Iluminação e pH**: Corrigir a intensidade da luz e o nível de pH.
+4. **Monitoramento contínuo de Estresse Foliar**: Aplicar ajustes contínuos conforme necessário.
 
-## Checklist de Verificação Pós-Implementação
-1. **Irrigação**:
-   - Ligar e monitorar fluxo da bomba.
-   - Confirmar umidade entre 60-70% nas Linhas A e B.
-2. **Clima**:
-   - Verificar temperatura entre 22-24°C.
-   - Confirmar umidade relativa entre 55-65%.
-3. **Nutrientes**:
-   - Estabiliizar pH em 5.8-6.2.
-   - Confirmar EC em 1.4 mS/cm.
-4. **Saúde Vegetal**:
-   - Monitorar sinais de redução de estresse hídrico.
-   - NDVI aumento relevante em 72 horas.
+## 4. Critérios de Verificação Pós-Execução
+- Confirme com sensores a leitura de umidade adequada (35-45%).
+- Revise a temperatura ambiente - alvo entre 22-24ºC.
+- Certifique-se de que a umidade relativa está entre 55-65%.
+- Verifique que a intensidade da luz se mantenha entre 800-1200 lux.
+- Assegure que o pH está estabilizado entre 5.8-6.2.
 
-## Alertas de Rollback e Contingência
-- **Se o fluxo de irrigação não estabilizar em 1 hora**: Ativar bomba de reserva e aumentar verificação manual.
-- **Se temperatura ou umidade não se ajustarem em 12 horas**: Reavaliar sensores climáticos e ativar suporte técnico.
-- **Se pH ou EC não estabilizarem em 48 horas**: Diluir solução nutritiva adicionalmente e preparar ajustes químicos detalhados.
-- **Monitoramento Contínuo de Saúde Vegetal**: Se NDVI não melhorar em 72 horas, considerar consulta de especialista em saúde vegetal.
+## 5. Alertas de Rollback
+Acionar rollback se qualquer uma das métricas não melhorar após 6 horas. Retornar ao estado anterior e reanalisar:
+- Se a umidade não alcançar 35% ou mais.
+- Se a temperatura ambiente não estiver ajustada.
+- Se a luminosidade ou pH permanecerem fora do alvo.
+Iniciar protocolo de escalonamento de suporte técnico caso ocorra rollback.
+
+Estas instruções garantirão a manutenção e otimização das condições necessárias para o crescimento saudável das alfaces hidropônicas no setor Alpha-3.
